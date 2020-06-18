@@ -30,7 +30,10 @@ def initial_send(client, server):
     data = gather_data()
 
     print("Calling API with: ", data["source"])
-    pic = requests.get("http://de1.api.radio-browser.info/json/stations/byurl", {"url": data["source"]}).json()[0]["favicon"]
+    try:
+        pic = requests.get("http://de1.api.radio-browser.info/json/stations/byurl", {"url": data["source"]}).json()[0]["favicon"]
+    except IndexError:
+        pic = ""
 
     data["pic"] = pic
 
@@ -45,15 +48,25 @@ print(">> Socketserver listening (:8080).")
 
 thread.start_new_thread(socketserver.run_forever, ())
 
+os.popen("mpc clear")
+os.popen("mpc volume 40")
+
 old_data = {"source": ""}
+pic = ""
 while True:
     time.sleep(1)
     data = gather_data()
 
     if data != old_data:
         if data["source"] != old_data["source"]:
-            print("Calling API with: ", data["source"])
-            pic = requests.get("http://de1.api.radio-browser.info/json/stations/byurl", {"url": data["source"]}).json()[0]["favicon"]
+            if data["source"] != "":
+                print("Calling API with: ", data["source"])
+                try:
+                    pic = requests.get("http://de1.api.radio-browser.info/json/stations/byurl", {"url": data["source"]}).json()[0]["favicon"]
+                except IndexError:
+                    pic = ""
+            else:
+                pic = ""
 
         data["pic"] = pic
 

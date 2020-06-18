@@ -20,5 +20,4 @@ echo $stream;
 shell_exec("mpc clear");
 shell_exec("mpc add ".$stream);
 shell_exec("mpc play");
-shell_exec("mpc add ".$stream);
 ?>

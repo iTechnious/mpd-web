@@ -46,7 +46,7 @@
     <div class="row">
         <div class="card col-sm-4">
             <div class="card-image">
-              <img id="radio-station-picture" alt="Doof" height="512">
+              <img id="radio-station-picture" alt="Kein Bild gefunden" height="512">
               <h1 class="card-title" id="radio-station-time"></h1>
               <a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#switchStation"><i class="material-icons">radio</i></a>
             </div>
