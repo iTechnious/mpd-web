@@ -21,7 +21,10 @@ if (count($bang) < 3) {
 $part = explode("  ", $player)[0];
 $volume = explode(":", $part)[1];
 $volume = str_replace(" ", "", $volume);
+$volume = str_replace("%", "", $volume);
 
-$res = array("title"=>urldecode($title),"time"=>$time,"volume"=>$volume);
+$source = exec("mpc queued");
+
+$res = array("title"=>urldecode($title),"source"=>urldecode($source),"time"=>$time,"volume"=>$volume);
 echo json_encode($res);
 ?>
