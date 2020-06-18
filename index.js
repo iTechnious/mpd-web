@@ -1,4 +1,23 @@
 let api_address = window.location.host;
+const ws = new WebSocket("ws://" + api_address + ":8080")
+
+var source = "";
+function update(information) {
+    $("#radio-station-time").html(information.time);
+    $("#radio-station-song").html(information.song);
+    $("#radio-station-name").html(information.station);
+    $("#volume-slider").val(information.volume);
+    if (information.pic == "") { document.getElementById("radio-station-picture").src = "https://garciaflorian.github.io/music-player-for-materialize/assets/music/fun.png"; }
+    else { document.getElementById("radio-station-picture").src=information.pic; }
+    
+
+    if (information.source != "") { source = information.source; }
+}
+
+ws.onmessage = (e) => {
+    console.log("RECEIVED >> " + e.data);
+    update(JSON.parse(e.data));
+};
 
 $(document).ready(function(){
     $('.modal').modal();
@@ -53,22 +72,14 @@ function resume() {
             .then(res => resolve(res));
     });
 }
-var source = "";
-function update() {
-    info()
-    .then(information => {
-        $("#radio-station-time").html(information.time);
-        $("#radio-station-name").html(information.title);
-        $("#volume-slider").val(information.volume);
-        if (information.source != "") { source = information.source; }
-    });
-}
 
+/*
 setInterval(() => {
     update();
 }, 1000);
+*/
 
-update();
+// update();
 
 document.getElementById("volume-slider").addEventListener("change", ev => {
     let new_volume = $("#volume-slider").val();

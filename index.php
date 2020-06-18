@@ -46,14 +46,15 @@
     <div class="row">
         <div class="card col-sm-4">
             <div class="card-image">
-              <img id="radio-station-picture" src="https://garciaflorian.github.io/music-player-for-materialize/assets/music/fun.png" height="512">
-              <h1 class="card-title" id="radio-station-time">00:00</h1>
+              <img id="radio-station-picture" alt="Doof" height="512">
+              <h1 class="card-title" id="radio-station-time"></h1>
               <a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#switchStation"><i class="material-icons">radio</i></a>
             </div>
             <div class="card-content">
-                <h5 id="radio-station-name"></h5>
+                <h5 id="radio-station-song"></h5>
+                <h6 id="radio-station-name"></h6>
                 <p class="range-field">
-                    <input type="range" id="volume-slider" min="10" max="100" />
+                    <input type="range" id="volume-slider" min="0" max="100" />
                 </p>
 
                 <div class="row">

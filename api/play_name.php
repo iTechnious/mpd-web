@@ -13,7 +13,7 @@ if ($json === false || $json == "[]") {
 }
 $res = json_decode($json);
 
-$stream = $res[0]->url_resolved;
+$stream = $res[0]->url;
 
 echo $stream;
 

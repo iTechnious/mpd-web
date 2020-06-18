@@ -2,29 +2,28 @@
 $data = nl2br(shell_exec("mpc"));
 $bang = explode("\n", $data);
 
-if (count($bang) < 3) {
-    $title = "";
+$title = exec("mpc current --format=%title%");
+
+if ($title == "") {
     $time = "";
-    $player = $bang[0];
-    
 } else {
-    $title = explode("<br", $bang[0])[0];
+    //$title = explode("<br", $bang[0])[0];
 
     $stats = $bang[1];
     $part = explode("/", $stats)[1];
     $part = explode(" ", $part);
     $time = $part[count($part)-1];
-
-    $player = $bang[2];
 }
 
-$part = explode("  ", $player)[0];
+$part = exec("mpc volume");
 $volume = explode(":", $part)[1];
 $volume = str_replace(" ", "", $volume);
 $volume = str_replace("%", "", $volume);
 
-$source = exec("mpc queued");
+$source = exec("mpc current --format=%file%");
 
-$res = array("title"=>urldecode($title),"source"=>urldecode($source),"time"=>$time,"volume"=>$volume);
+$station = exec("mpc current --format=%name%");
+
+$res = array("title"=>$title,"source"=>$source,"station"=>$station,"time"=>$time,"volume"=>$volume);
 echo json_encode($res);
 ?>
