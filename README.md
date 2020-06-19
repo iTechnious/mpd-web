@@ -1,13 +1,15 @@
 # webradio
-Webinterface to control music playback.
+Webinterface to control webradio playback.
 
 ## Current features
 * API to controll MPC/MPD
+* Webinterface with basic controlls (Volume, Station with text search)
 
 ## Work in progress
-* Webinterface with basic controlls (Volume, Station with text search and direct URL)
+* Favourites on webinter
 
 ## Planned features
-* Favourites on webinter
+* Nice search design with pigtures and multiple choice
 * Embedded pictures, station names, popularity...
+* Full websocket implementation
 * Spotify controlls
