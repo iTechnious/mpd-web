@@ -8,7 +8,7 @@ function update(information) {
     $("#radio-station-name").html(information.station);
     $("#volume-slider").val(information.volume);
     if (information.pic == "") { document.getElementById("radio-station-picture").src = "https://garciaflorian.github.io/music-player-for-materialize/assets/music/fun.png"; }
-    else { document.getElementById("radio-station-picture").src=information.pic; }
+    else { if (document.getElementById("radio-station-picture").src != information.pic) { document.getElementById("radio-station-picture").src=information.pic } }
     
 
     if (information.source != "") { source = information.source; }
